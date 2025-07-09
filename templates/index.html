@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Prediction Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body >
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src='static\logo.jpg'>
+            <span>Crypto Prediction Platform</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-item">Home</a>
+            <a href="/about" class="nav-item">About Us</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Crypto Prediction Platform</h1>
+
+        <form action="/predict" method="GET">
+            <label for="crypto_pair">Enter Crypto Pair:</label>
+            <input type="text" id="crypto_pair" name="crypto_pair" placeholder="e.g., ETH/USDT" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if error %}
+        <div class="error">
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+
+        {% if crypto_pair %}
+        <div class="results">
+            <h2>Results for <strong>{{ crypto_pair }}</strong></h2>
+            <p><strong>Predicted Price:</strong> {{ predicted_price }}</p>
+            <p><strong>Mean Squared Error (MSE):</strong> {{ mse }}</p>
+            <p><strong>Root Mean Squared Error (RMSE):</strong> {{ rmse }}</p>
+            <p><strong>Prediction Accuracy:</strong> {{ accuracy }}%</p>
+
+            <h3>Graph</h3>
+            <img src="{{ graph_url }}" alt="Crypto Prediction Graph">
+
+            <h2>Prediction Results</h2>
+
+<div>
+    <button onclick="showTable('past')">Last 10 Predictions</button>
+    <button onclick="showTable('future')">Next 5 Days Forecast</button>
+</div>
+
+<!-- Past Predictions Table -->
+<div id="past-table">
+    <h3>Last 10 Predictions</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Actual Price</th>
+                <th>Predicted Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in table_data %}
+                <tr>
+                    <td>{{ row['Time'] }}</td>
+                    <td>{{ row['Actual Price'] }}</td>
+                    <td>{{ row['Predicted Price'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Future Predictions Table -->
+<div id="future-table" style="display: none;">
+    <h3>Next 5 Days Forecast</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Predicted Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in future_table_data %}
+                <tr>
+                    <td>{{ row['Time'] }}</td>
+                    <td>{{ row['Predicted Price'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function showTable(type) {
+        document.getElementById('past-table').style.display = type === 'past' ? 'block' : 'none';
+        document.getElementById('future-table').style.display = type === 'future' ? 'block' : 'none';
+    }
+</script>
+
+        </div>
+        {% endif %}
+    </div>
+    <div class="faq-section">
+        <h2>Cryptocurrency FAQ</h2>
+        <p>Need help? <a href="mailto:chirag2005gulati@gmail.com">Contact us</a></p>
+    
+        <div class="faq-item">
+            <h3>What is a cryptocurrency?</h3>
+            <p>
+                A cryptocurrency is a digital currency that keeps records about balances and transactions 
+                on a distributed ledger, most commonly in the form of a blockchain. Cryptocurrencies enable 
+                peer-to-peer transactions between participants across the globe on a 24/7 basis.
+            </p>
+        </div>
+    
+        <div class="faq-item">
+            <h3>How does a cryptocurrency work?</h3>
+            <p>
+                Cryptocurrency works through networks of nodes that constantly communicate to stay updated 
+                about the current state of the ledger. While all cryptocurrencies leverage cryptographic 
+                methods, they may differ in design, strengths, and weaknesses.
+            </p>
+            <p>
+                The two major categories are <b>Proof-of-Work</b> and <b>Proof-of-Stake</b>. Proof-of-Work 
+                coins use mining, while Proof-of-Stake coins use staking to achieve consensus about the 
+                state of the ledger.
+            </p>
+        </div>
+    </div>
+    
+</body>
+</html>

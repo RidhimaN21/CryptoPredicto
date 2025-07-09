@@ -1,0 +1,71 @@
+body {
+    background: url("bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.navbar a {
+    color: #4A90E2;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #4A90E2;
+    color: #000000;
+    border-radius: 5px;
+}
+
+/* About Us Section */
+.about-container {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.about-container h1 {
+    color: #4A90E2;
+    margin-bottom: 20px;
+}
+
+.team-section {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.team-member {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #4A90E2;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+}
+
+.team-member h2 {
+    margin: 0;
+    color: #4A90E2;
+}
+
+.team-member p {
+    margin: 5px 0 0;
+}
